@@ -17,6 +17,10 @@ save_dir = QFileDialog.getExistingDirectory(
     None,
     "Select folder to save figure"
 )
+
+if not save_dir:
+    raise RuntimeError("No directory selected. Aborting save.")
+
 # Optional: define colors (auto-extend if fewer than datasets)
 bar_colors = ['green', 'darkred', 'steelblue', 'purple', 'teal']
 point_colors = ['darkblue', 'orange', 'black', 'brown', 'gray']
