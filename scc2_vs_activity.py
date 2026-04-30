@@ -73,7 +73,7 @@ unique = dict(zip(legend_labels, handles))
 plt.legend(unique.values(), unique.keys(), fontsize=8)
 
 # ---- Save ----
-plt.savefig(os.path.join(save_dir,"loop_extrusion_activity.svg"), format="svg", bbox_inches="tight")
-plt.savefig(os.path.join(save_dir,"loop_extrusion_activity.png"), dpi=600, bbox_inches="tight")
+plt.savefig(os.path.join(save_dir,"loop_extrusion_activity_scc2.svg"), format="svg", bbox_inches="tight")
+plt.savefig(os.path.join(save_dir,"loop_extrusion_activity_scc2.png"), dpi=600, bbox_inches="tight")
 
 plt.show()
