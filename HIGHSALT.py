@@ -1,5 +1,7 @@
+import os
 import matplotlib.pyplot as plt
 import numpy as np
+from PyQt5.QtWidgets import QApplication, QFileDialog
 
 # ---- Input: multiple datasets ----
 datasets = {
@@ -7,6 +9,15 @@ datasets = {
     " rec-8 (2nM) + Scc-2 (8nM)": [0.2,0.22],
     # add more datasets here
 }
+
+app = QApplication([])
+save_dir = QFileDialog.getExistingDirectory(
+    None,
+    "Select folder to save figure"
+)
+
+if not save_dir:
+    raise RuntimeError("No directory selected. Aborting save.")
 
 # Optional: define colors (auto-extend if fewer than datasets)
 bar_colors = ['green', 'darkred', 'steelblue', 'purple', 'teal']
@@ -57,7 +68,7 @@ unique = dict(zip(legend_labels, handles))
 plt.legend(unique.values(), unique.keys(), fontsize=8)
 
 # ---- Save ----
-plt.savefig("high_salt_remining.svg", format="svg", bbox_inches="tight")
-plt.savefig("high_salt_remining.png", dpi=600, bbox_inches="tight")
+plt.savefig(os.path.join(save_dir,"high_salt_remining.svg"), format="svg", bbox_inches="tight")
+plt.savefig(os.path.join(save_dir, "high_salt_remining.png"), dpi=600, bbox_inches="tight")
 
 plt.show()
