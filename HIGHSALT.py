@@ -1,28 +1,12 @@
-import os
 import matplotlib.pyplot as plt
 import numpy as np
-from PyQt5.QtWidgets import QApplication, QFileDialog
-
 
 # ---- Input: multiple datasets ----
 datasets = {
-    " Scc-2 (2 nM)": [0.0,0.0,0.0],
-    " Scc-2 (2.5 nM)": [0.15, 0.1,0.1],
-    " Scc-2 (3 nM)": [0.25, 0.1,0.2],
-    " Scc-2 (5 nM)": [0.11, 0.12,0.17],
-    " Scc-2 (6 nM)": [0.2],
-    " Scc-2 (7.5 nM)": [0.65],
-    " Scc-2 (8 nM)": [0.86, 0.8],
+    " coh-3 (2nM) + Scc-2 (8 nM)": [0.05],
+    " rec-8 (2nM) + Scc-2 (8nM)": [0.2,0.22],
     # add more datasets here
 }
-app = QApplication([])
-save_dir = QFileDialog.getExistingDirectory(
-    None,
-    "Select folder to save figure"
-)
-
-if not save_dir:
-    raise RuntimeError("No directory selected. Aborting save.")
 
 # Optional: define colors (auto-extend if fewer than datasets)
 bar_colors = ['green', 'darkred', 'steelblue', 'purple', 'teal']
@@ -63,9 +47,9 @@ for i, d in enumerate(data_values):
 
 # ---- Formatting ----
 plt.xticks(x_positions, labels, rotation=20, ha='right')
-plt.ylabel('Fraction of loops')
+plt.ylabel('protein bound fraction after high salt wash')
 plt.ylim(0, 1)
-plt.title('Loop Extrusion Activity')
+plt.title('High Salt wash experiment')
 
 # Avoid duplicate legend entries (bars vs points)
 handles, legend_labels = plt.gca().get_legend_handles_labels()
@@ -73,7 +57,7 @@ unique = dict(zip(legend_labels, handles))
 plt.legend(unique.values(), unique.keys(), fontsize=8)
 
 # ---- Save ----
-plt.savefig(os.path.join(save_dir,"loop_extrusion_activity.svg"), format="svg", bbox_inches="tight")
-plt.savefig(os.path.join(save_dir,"loop_extrusion_activity.png"), dpi=600, bbox_inches="tight")
+plt.savefig("high_salt_remining.svg", format="svg", bbox_inches="tight")
+plt.savefig("high_salt_remining.png", dpi=600, bbox_inches="tight")
 
 plt.show()
