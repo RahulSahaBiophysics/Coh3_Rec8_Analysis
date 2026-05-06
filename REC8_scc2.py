@@ -7,9 +7,8 @@ from PyQt5.QtWidgets import QApplication, QFileDialog
 datasets = {
     " rec-8 (1nM) + Scc-2 (5 nM)": [0.0],
     " rec-8 (2nM) + Scc-2 (5nM)": [0.0],
-    " rec-8 (2nM) + Scc-2 (8 nM)": [0.0],
-    " rec-8 (2nM) + Scc-2 (12 nM)": [0.0],
-    " rec-8 (4nM) + Scc-2 (12 nM)": [0.0]
+    " rec-8 (2nM) + Scc-2 (8 nM)": [0.04, 0.044],
+    " rec-8 (4nM) + Scc-2 (12 nM)": [0.1]
     # add more datasets here
 }
 
@@ -61,9 +60,9 @@ for i, d in enumerate(data_values):
 
 # ---- Formatting ----
 plt.xticks(x_positions, labels, rotation=20, ha='right')
-plt.ylabel('Fraction of loops')
+plt.ylabel('Fraction of compaction')
 plt.ylim(0, 1)
-plt.title('Loop Extrusion Activity')
+plt.title('compaction Activity')
 
 # Avoid duplicate legend entries (bars vs points)
 handles, legend_labels = plt.gca().get_legend_handles_labels()
