@@ -69,7 +69,34 @@ for dirpath, _, filenames in os.walk(root_dir):
             except Exception as e:
                 print(f"Error: {e}")
 
+       
 results_df = pd.DataFrame(results)
+print(results_df[['rate up', 'rate down']].describe())
+fig, ax = plt.subplots()
+#h = ax.hist2d(results_df['rate up'], results_df['rate down'], bins = 50, cmap = 'gist_heat_r')
+ax.scatter(results_df['rate up'], results_df['rate down'], s = 2, color = 'red')
+ax.set_xlabel('Rate I (kbps)')
+ax.set_ylabel('Rate II (kbps)')
+max_abs_val = np.max(np.abs([results_df['rate down'], results_df['rate up']]))
+#max_abs_val = np.max(np.abs(results_df[['rate down', 'rate up']].values))
+ax.set_xlim(-max_abs_val, max_abs_val)
+ax.set_ylim(-max_abs_val, max_abs_val)
+ax.axhline(0, color='black', linestyle='--', alpha=0.5)
+ax.axvline(0, color='black', linestyle='--', alpha=0.5)
+# set number of ticks to 5
+ax.locator_params(nbins=5)
+ax.set_aspect('equal')
+#plt.colorbar(h[3], ax=ax, label='Counts')
+
+plot_png = os.path.join(root_dir, "quadrant_plot.png")
+plot_svg = os.path.join(root_dir, "quadrant_plot.svg")
+
+plt.savefig(plot_png, transparent=True, dpi=600)
+plt.savefig(plot_svg, transparent=True)
+
+print(f"Saved plot to: {plot_png}")
+print(f"Saved plot to: {plot_svg}")
+plt.show()
 
 output_path = os.path.join(root_dir, "symmetry_summary.csv")
 results_df.to_csv(output_path, index=False)
