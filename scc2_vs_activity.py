@@ -6,13 +6,14 @@ from PyQt5.QtWidgets import QApplication, QFileDialog
 
 # ---- Input: multiple datasets ----
 datasets = {
+    " Scc-2 (0 nM)": [0.0,0.0,0.0],
     " Scc-2 (2 nM)": [0.0,0.0,0.0],
     " Scc-2 (2.5 nM)": [0.15, 0.1,0.1],
     " Scc-2 (3 nM)": [0.25, 0.1,0.2],
     " Scc-2 (5 nM)": [0.11, 0.12,0.17],
-    " Scc-2 (6 nM)": [0.2],
-    " Scc-2 (7.5 nM)": [0.65],
-    " Scc-2 (8 nM)": [0.86, 0.8],
+    " Scc-2 (6 nM)": [0.25,0.20],
+    " Scc-2 (7.5 nM)": [0.4,0.39,],
+    " Scc-2 (8 nM)": [0.86,0.81,0.8],
     # add more datasets here
 }
 app = QApplication([])
@@ -25,7 +26,8 @@ if not save_dir:
     raise RuntimeError("No directory selected. Aborting save.")
 
 # Optional: define colors (auto-extend if fewer than datasets)
-bar_colors = ['green', 'darkred', 'steelblue', 'purple', 'teal']
+#bar_colors = ['green', 'darkred', 'steelblue', 'purple', 'teal']
+bar_colors = plt.cm.turbo(np.linspace(0, 1, 8))
 point_colors = ['darkblue', 'orange', 'black', 'brown', 'gray']
 
 labels = list(datasets.keys())
@@ -57,7 +59,7 @@ for i, d in enumerate(data_values):
         d,
         color=point_colors[i % len(point_colors)],
         zorder=5,
-        s=25,
+        s=5,
         label=labels[i]
     )
 
