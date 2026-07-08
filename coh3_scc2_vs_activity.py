@@ -5,10 +5,10 @@ from PyQt5.QtWidgets import QApplication, QFileDialog
 
 # ---- Input: multiple datasets ----
 datasets = {
-    " coh-3 (1nM) + Scc-2 (2.5 nM)": [0.02,0.01,0.03],
-    " coh-3 (1.5nM) + Scc-2 (3.75 nM)": [0.05, 0.06,0.05],
-    " coh-3 (2nM) + Scc-2 (5 nM)": [0.11, 0.12,0.17],
-    " coh-3 (3nM) + Scc-2 (7.5 nM)": [0.3, 0.4],
+    " COH-3 (1nM) + SCC-2 (2.5 nM)": [0.0,0.0,0.0],
+    " COH-3 (1.5nM) + SCC-2 (3.75 nM)": [0.0, 0.06, 0.05],
+    " COH-3 (2nM) + SCC-2 (2.5 nM)": [0.11,0.12,0.17],
+    " COH-3 (3nM) + SCC-2 (7.5 nM)": [0.32,0.39]
     # add more datasets here
 }
 
