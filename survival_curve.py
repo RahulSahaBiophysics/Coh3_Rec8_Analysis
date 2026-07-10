@@ -1,3 +1,4 @@
+import os
 import sys
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,6 +15,11 @@ app = QApplication.instance()
 if app is None:
     app = QApplication(sys.argv)
 
+
+folder = QFileDialog.getExistingDirectory(
+    None,
+    "Select folder to save figure"
+)
 # ==========================================================
 # Select CSV files
 # ==========================================================
@@ -82,8 +88,20 @@ kmf.plot_survival_function(ci_show=True)
 plt.xlabel("Binding duration (s)")
 plt.ylabel("Probability of Remaining Bound")
 plt.title("Kaplan–Meier Survival Analysis")
+
+plt.xlim(0, 100)
 plt.grid(alpha=0.3)
 plt.tight_layout()
+plt.savefig(
+    os.path.join(folder, "Kaplan_Meier_100s.png"),
+    dpi=300,
+    bbox_inches="tight"
+)
+plt.savefig(
+    os.path.join(folder, "Kaplan_Meier_100s.svg"),
+    bbox_inches="tight"
+)
+
 plt.show()
 
 # ==========================================================
