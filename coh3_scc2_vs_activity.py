@@ -36,7 +36,7 @@ std_vals = [np.std(d) for d in data_values]
 x_positions = np.arange(len(datasets))
 
 # ---- Plot bars ----
-plt.figure(figsize=(6,4))
+plt.figure(figsize=(3,4))
 plt.bar(
     x_positions,
     mean_vals,
@@ -49,12 +49,19 @@ plt.bar(
 
 # ---- Overlay individual points ----
 for i, d in enumerate(data_values):
+
+    x_jitter = np.random.normal(
+        x_positions[i],
+        0.08,
+        size=len(d)
+    )
+
     plt.scatter(
-        np.full(len(d), x_positions[i]),
+        x_jitter,
         d,
         color=point_colors[i % len(point_colors)],
         zorder=5,
-        s=25,
+        s=10,
         label=labels[i]
     )
 
@@ -67,7 +74,7 @@ plt.title('Loop Extrusion Activity')
 # Avoid duplicate legend entries (bars vs points)
 handles, legend_labels = plt.gca().get_legend_handles_labels()
 unique = dict(zip(legend_labels, handles))
-plt.legend(unique.values(), unique.keys(), fontsize=8)
+#plt.legend(unique.values(), unique.keys(), fontsize=8)
 
 # ---- Save ----
 plt.savefig(os.path.join(save_dir,"loop_extrusion_activity_coh3_scc2.svg"), format="svg", bbox_inches="tight")
