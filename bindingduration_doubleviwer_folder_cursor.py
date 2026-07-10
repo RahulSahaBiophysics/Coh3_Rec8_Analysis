@@ -7,7 +7,7 @@ from qtpy.QtWidgets import QPushButton, QFileDialog, QSlider, QLabel, QVBoxLayou
 from qtpy.QtCore import Qt
 
 
-# =========================================================
+#This script open image and kymo in separate napari viewer and multiple images can be opened one by one
 # APP STATE
 # =========================================================
 class AppState:
